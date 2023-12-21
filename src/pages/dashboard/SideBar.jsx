@@ -5,20 +5,34 @@ import {
   IconButton,
   Divider,
   Avatar,
+  Menu,
+  Fade,
+  MenuItem,
+  Typography,
 } from "@mui/material";
 import React, { useState } from "react";
 import LogoImg from "../../assets/Images/logo.ico";
-import { Nav_Buttons } from "../../data/index";
+import { Nav_Buttons, Profile_Menu } from "../../data/index";
 import { faker } from "@faker-js/faker";
 import { Gear } from "phosphor-react";
 import useSettings from "../../hooks/useSettings";
 import AntSwitch from "../../components/AntSwitch";
 
-function Navigation() {
+function SideBar() {
   const [selected, setSelected] = useState(0);
   const theme = useTheme();
   const { onToggleMode } = useSettings();
   const isLight = theme.palette.mode === "light";
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   return (
     <Box
       p={2}
@@ -106,10 +120,49 @@ function Navigation() {
       </Stack>
       <Stack spacing={2} alignItems={"center"}>
         <AntSwitch defaultChecked onChange={onToggleMode} />
-        <Avatar src={faker.image.avatar()} />
+        <Avatar
+          src={faker.image.avatar()}
+          id="fade-button"
+          aria-controls={open ? "fade-menu" : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? "true" : undefined}
+          onClick={handleClick}
+        />
+        <Menu
+          id="fade-menu"
+          MenuListProps={{
+            "aria-labelledby": "fade-button",
+          }}
+          anchorEl={anchorEl}
+          open={open}
+          onClose={handleClose}
+          TransitionComponent={Fade}
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "right",
+          }}
+          transformOrigin={{
+            vertical: "bottom",
+            horizontal: "left",
+          }}
+        >
+          {Profile_Menu.map((el) => (
+            <MenuItem onClick={handleClose}>
+              <Stack
+                direction="row"
+                justifyContent="space-between"
+                alignItems="center"
+                width={90}
+              >
+                <Typography variant="subtitle2">{el.title}</Typography>
+                <span>{el.icon}</span>
+              </Stack>
+            </MenuItem>
+          ))}
+        </Menu>
       </Stack>
     </Box>
   );
 }
 
-export default Navigation;
+export default SideBar;
