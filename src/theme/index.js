@@ -29,6 +29,18 @@ export default function ThemeProvider({ children }) {
 
   const themeOptions = useMemo(
     () => ({
+      components: {
+        MuiButton: {
+          styleOverrides: {
+            // Name of the slot
+            root: {
+              marginTop: 0,
+              // Some CSS
+              fontSize: "1rem",
+            },
+          },
+        },
+      },
       palette: isLight ? palette.light : palette.dark,
       typography,
       breakpoints,

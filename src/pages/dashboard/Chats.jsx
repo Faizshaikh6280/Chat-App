@@ -56,7 +56,7 @@ const Chats = () => {
             theme.palette.mode === "light"
               ? "#F8FAFF"
               : theme.palette.background,
-
+          width: "320px",
           boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)",
         }}
       >
@@ -96,7 +96,7 @@ const Chats = () => {
                   Pinned
                 </Typography>
                 {ChatList.filter((el) => el.pinned).map((el, idx) => {
-                  return <ChatElement {...el} />;
+                  return <ChatElement {...el} key={idx} />;
                 })}
               </Stack>
               <Stack spacing={2.4}>
@@ -104,7 +104,7 @@ const Chats = () => {
                   All Chats
                 </Typography>
                 {ChatList.filter((el) => !el.pinned).map((el, idx) => {
-                  return <ChatElement {...el} />;
+                  return <ChatElement {...el} key={idx} />;
                 })}
               </Stack>
             </SimpleBarStyle>
