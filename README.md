@@ -1,6 +1,8 @@
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Modern UI for Chat App
+![Capture](https://github.com/Faizshaikh6280/Chat-App/assets/85018338/f672aea3-7846-4e34-9584-e1428d514678)
 
 ## Available Scripts
 
