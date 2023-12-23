@@ -18,12 +18,12 @@ import { Message_options } from "../../data";
 function StyledDivider({ el }) {
   return (
     <Stack>
-      <Divider>{el.text}</Divider>
+      <Divider>Today</Divider>
     </Stack>
   );
 }
 
-function TextMsg({ el }) {
+function TextMsg({ el, showMenu }) {
   const theme = useTheme();
   return (
     <Stack
@@ -48,11 +48,11 @@ function TextMsg({ el }) {
           {el.message}
         </Typography>
       </Box>
-      <MessageMenu />
+      {showMenu && <MessageMenu />}
     </Stack>
   );
 }
-function ImageMsg({ el }) {
+function ImageMsg({ el, showMenu }) {
   const theme = useTheme();
 
   return (
@@ -85,11 +85,11 @@ function ImageMsg({ el }) {
           </Typography>
         </Stack>
       </Box>
-      <MessageMenu />
+      {showMenu && <MessageMenu />}
     </Stack>
   );
 }
-function DocumentMsg({ el }) {
+function DocumentMsg({ el, showMenu }) {
   const theme = useTheme();
   return (
     <Stack
@@ -139,11 +139,11 @@ function DocumentMsg({ el }) {
           </Typography>
         </Stack>
       </Box>
-      <MessageMenu />
+      {showMenu && <MessageMenu />}
     </Stack>
   );
 }
-function LinkMsg({ el }) {
+function LinkMsg({ el, showMenu }) {
   const theme = useTheme();
   return (
     <Stack
@@ -187,12 +187,12 @@ function LinkMsg({ el }) {
           </Typography>
         </Stack>
       </Box>
-      <MessageMenu />
+      {showMenu && <MessageMenu />}
     </Stack>
   );
 }
 
-function ReplyMsg({ el }) {
+function ReplyMsg({ el, showMenu }) {
   const theme = useTheme();
   const { themeMode } = useSettings();
   const isLight = themeMode === "light";
@@ -238,7 +238,7 @@ function ReplyMsg({ el }) {
           </Typography>
         </Stack>
       </Box>
-      <MessageMenu />
+      {showMenu && <MessageMenu />}
     </Stack>
   );
 }

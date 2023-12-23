@@ -20,7 +20,6 @@ const ChatElement = ({ img, name, msg, time, unread, online, id }) => {
         justifyContent="space-between"
       >
         <Stack direction="row" spacing={2}>
-          {" "}
           {online ? (
             <StyledBadge
               overlap="circular"

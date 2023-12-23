@@ -1,13 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { dispatch } from "../store";
-
 const initialState = {
   sidebar: {
     open: false,
     type: "CONTACT", // | CONTACT | STARRED | SHARED
   },
 };
+
 const slice = createSlice({
   name: "app",
   initialState,
@@ -20,5 +19,7 @@ const slice = createSlice({
     },
   },
 });
+
+export const { toggleSideber, updateSidebarType } = slice.actions;
 
 export default slice.reducer;

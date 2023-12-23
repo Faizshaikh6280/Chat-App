@@ -11,7 +11,7 @@ const AntSwitch = styled(Switch)(({ theme }) => ({
       width: 15,
     },
     "& .MuiSwitch-switchBase.Mui-checked": {
-      transform: "translateX(9px)",
+      transform: "translateX(20px)",
     },
   },
   "& .MuiSwitch-switchBase": {

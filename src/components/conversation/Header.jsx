@@ -11,9 +11,12 @@ import React from "react";
 import { StyledBadge } from "../StyledBadge";
 import { faker } from "@faker-js/faker";
 import { CaretDown, MagnifyingGlass, Phone, VideoCamera } from "phosphor-react";
+import { useDispatch } from "react-redux";
+import { toggleSideber } from "../../redux/slices/app";
 
 function Header() {
   const theme = useTheme();
+  const dispatch = useDispatch();
   return (
     <Box
       sx={{
@@ -27,7 +30,12 @@ function Header() {
     >
       <Stack direction="row" justifyContent="space-between" alignItems="center">
         {/* Left part */}
-        <Stack direction="row" spacing={2} alignItems="center">
+        <Stack
+          direction="row"
+          spacing={2}
+          alignItems="center"
+          onClick={() => dispatch(toggleSideber())}
+        >
           <StyledBadge
             overlap="circular"
             anchorOrigin={{ vertical: "bottom", horizontal: "right" }}

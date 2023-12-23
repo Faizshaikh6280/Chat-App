@@ -10,7 +10,7 @@ import {
   ImageMsg,
 } from "./Messages";
 
-function MainChat() {
+function MainChat({ showMenu }) {
   return (
     <Box sx={{ padding: 2 }}>
       <Stack spacing={2}>
@@ -21,15 +21,15 @@ function MainChat() {
             case "msg":
               switch (el.subtype) {
                 case "img":
-                  return <ImageMsg el={el} />;
+                  return <ImageMsg el={el} showMenu={showMenu} />;
                 case "doc":
-                  return <DocumentMsg el={el} />;
+                  return <DocumentMsg el={el} showMenu={showMenu} />;
                 case "link":
-                  return <LinkMsg el={el} />;
+                  return <LinkMsg el={el} showMenu={showMenu} />;
                 case "reply":
-                  return <ReplyMsg el={el} />;
+                  return <ReplyMsg el={el} showMenu={showMenu} />;
                 default:
-                  return <TextMsg el={el} />;
+                  return <TextMsg el={el} showMenu={showMenu} />;
               }
             default:
           }

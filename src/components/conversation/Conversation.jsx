@@ -4,14 +4,16 @@ import React from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import MainChat from "./MainChat";
+import { useSelector } from "react-redux";
 
 function Conversation() {
   const theme = useTheme();
+  const { sidebar } = useSelector((store) => store.app);
   return (
     <Box
       sx={{
         height: "100vh",
-        width: "calc(100vw - 420px)",
+        width: sidebar.open ? "calc(100vw - 740px)" : "calc(100vw - 420px)",
       }}
     >
       <Stack height={"100%"}>
@@ -30,7 +32,7 @@ function Conversation() {
             flexGrow: 1,
           }}
         >
-          <MainChat />
+          <MainChat showMenu={true} />
         </Box>
         {/* Footer */}
         <Footer />
