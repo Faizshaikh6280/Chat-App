@@ -105,7 +105,9 @@ function SideBar() {
             </Box>
           ) : (
             <IconButton
-              onClick={() => setSelected(3)}
+              onClick={() => {
+                setSelected(3);
+              }}
               key={3}
               sx={{
                 width: "max-content",

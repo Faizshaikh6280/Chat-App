@@ -97,7 +97,7 @@ function Shared() {
                         <Grid item xs={4}>
                           <Box
                             sx={{
-                              boxShadow: "0px 0px 3px rgba(0,0,0,.2)",
+                              boxShadow: `0px 0px 3px rgba(0,0,0,.2)`,
                               borderRadius: 0.5,
                             }}
                             p={0.5}
@@ -123,7 +123,7 @@ function Shared() {
                 );
               case "three":
                 return (
-                  <Stack gap={1}>
+                  <Stack gap={1} width={"100%"}>
                     <Typography variant="overline">23 Dec 2023</Typography>
                     {SHARED_DOCS.map((el) => (
                       <DocumentMsg el={el} showMenu={false} />

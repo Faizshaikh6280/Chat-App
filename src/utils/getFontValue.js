@@ -59,7 +59,6 @@ export function responsiveFontSizes({ sm, md, lg }) {
     },
   };
 }
-console.log({ ...responsiveFontSizes({ sm: 52, md: 58, lg: 64 }) });
 // ----------------------------------------------------------------------
 
 function useWidth() {
