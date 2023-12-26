@@ -12,7 +12,7 @@ const GeneralApp = () => {
   return (
     <Stack direction="row">
       {/* Chat Area*/}
-      <Chats />
+      <Chats type="personal" />
       {/* Conversation  */}
       <Conversation />
       {/* Contact Info */}

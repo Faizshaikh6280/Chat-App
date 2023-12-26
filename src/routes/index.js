@@ -8,8 +8,6 @@ import DashboardLayout from "../layouts/dashboard";
 import { DEFAULT_PATH } from "../config";
 import LoadingScreen from "../components/LoadingScreen";
 import Auth from "../layouts/Auth";
-import Login from "../components/Auth/Login";
-import Signup from "../components/Auth/Signup";
 
 const Loadable = (Component) => (props) => {
   return (
@@ -27,6 +25,8 @@ export default function Router() {
       children: [
         { path: "login", element: <Login /> },
         { path: "signup", element: <Signup /> },
+        { path: "reset-password", element: <ForgetPassword /> },
+        { path: "new-password", element: <NewPassword /> },
       ],
     },
     {
@@ -37,6 +37,7 @@ export default function Router() {
 
         { path: "app", element: <GeneralApp /> },
         { path: "settings", element: <Settings /> },
+        { path: "group", element: <Groups /> },
 
         { path: "404", element: <Page404 /> },
         { path: "*", element: <Navigate to="/404" replace /> },
@@ -50,5 +51,13 @@ const GeneralApp = Loadable(
   lazy(() => import("../pages/dashboard/GeneralApp"))
 );
 const Settings = Loadable(lazy(() => import("../pages/dashboard/Settings")));
-
+const Login = Loadable(lazy(() => import("../components/Auth/Login")));
 const Page404 = Loadable(lazy(() => import("../pages/Page404")));
+const Signup = Loadable(lazy(() => import("../components/Auth/Signup")));
+const ForgetPassword = Loadable(
+  lazy(() => import("../components/Auth/ForgetPassword"))
+);
+const NewPassword = Loadable(
+  lazy(() => import("../components/Auth/NewPassword"))
+);
+const Groups = Loadable(lazy(() => import("../pages/dashboard/Groups")));

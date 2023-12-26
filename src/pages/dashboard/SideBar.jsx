@@ -148,8 +148,8 @@ function SideBar() {
             horizontal: "left",
           }}
         >
-          {Profile_Menu.map((el) => (
-            <MenuItem onClick={handleClose}>
+          {Profile_Menu.map((el, key) => (
+            <MenuItem onClick={handleClose} key={key}>
               <Stack
                 direction="row"
                 justifyContent="space-between"

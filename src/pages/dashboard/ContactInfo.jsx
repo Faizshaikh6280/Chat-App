@@ -186,8 +186,9 @@ function ContactInfo() {
             </Stack>
             {/* images */}
             <Stack direction="row" gap={1}>
-              {Array.from({ length: 3 }).map((el) => (
+              {Array.from({ length: 3 }).map((el, key) => (
                 <img
+                  key={key}
                   src={faker.image.avatar()}
                   alt={faker.name.fullName()}
                   width={"32%"}

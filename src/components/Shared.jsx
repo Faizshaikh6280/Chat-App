@@ -93,8 +93,8 @@ function Shared() {
                   <Stack gap={1}>
                     <Typography variant="overline">23 Dec 2023</Typography>
                     <Grid container spacing={2}>
-                      {Array.from({ length: 10 }).map((el) => (
-                        <Grid item xs={4}>
+                      {Array.from({ length: 10 }).map((el, key) => (
+                        <Grid item xs={4} key={key}>
                           <Box
                             sx={{
                               boxShadow: `0px 0px 3px rgba(0,0,0,.2)`,
@@ -116,8 +116,8 @@ function Shared() {
                 return (
                   <Stack gap={1}>
                     <Typography variant="overline">23 Dec 2023</Typography>
-                    {SHARED_LINKS.map((el) => (
-                      <LinkMsg el={el} showMenu={false} />
+                    {SHARED_LINKS.map((el, key) => (
+                      <LinkMsg el={el} showMenu={false} key={key} />
                     ))}
                   </Stack>
                 );
@@ -125,8 +125,8 @@ function Shared() {
                 return (
                   <Stack gap={1} width={"100%"}>
                     <Typography variant="overline">23 Dec 2023</Typography>
-                    {SHARED_DOCS.map((el) => (
-                      <DocumentMsg el={el} showMenu={false} />
+                    {SHARED_DOCS.map((el, indx) => (
+                      <DocumentMsg el={el} showMenu={false} key={indx} />
                     ))}
                   </Stack>
                 );

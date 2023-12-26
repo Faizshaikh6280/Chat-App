@@ -91,8 +91,8 @@ const ChatInput = ({ onToggleEmoji }) => {
               // alignItems="center"
               display={isActionsOpen ? "inline-block" : "none"}
             >
-              {Actions.map((el) => (
-                <Tooltip title={el.title} placement="right">
+              {Actions.map((el, key) => (
+                <Tooltip title={el.title} placement="right" key={key}>
                   <Fab
                     sx={{ position: "absolute", top: -el.y }}
                     color="primary"

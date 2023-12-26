@@ -14,8 +14,6 @@ const Auth = () => {
       </Stack>
       {/* Login or signup form */}
       <Outlet />
-      {/* Auth Social. */}
-      <SocialAuth />
     </Container>
   );
 };

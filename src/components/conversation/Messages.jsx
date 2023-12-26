@@ -276,8 +276,10 @@ function MessageMenu() {
         onClose={handleClose}
         TransitionComponent={Fade}
       >
-        {Message_options.map((el) => (
-          <MenuItem onClick={handleClose}>{el.title}</MenuItem>
+        {Message_options.map((el, key) => (
+          <MenuItem onClick={handleClose} key={key}>
+            {el.title}
+          </MenuItem>
         ))}
       </Menu>
     </>

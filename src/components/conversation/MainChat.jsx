@@ -14,22 +14,22 @@ function MainChat({ showMenu }) {
   return (
     <Box sx={{ padding: 2 }}>
       <Stack spacing={2}>
-        {Chat_History.map((el) => {
+        {Chat_History.map((el, key) => {
           switch (el.type) {
             case "divider":
-              return <StyledDivider el={el} />;
+              return <StyledDivider el={el} key={key} />;
             case "msg":
               switch (el.subtype) {
                 case "img":
-                  return <ImageMsg el={el} showMenu={showMenu} />;
+                  return <ImageMsg el={el} key={key} showMenu={showMenu} />;
                 case "doc":
-                  return <DocumentMsg el={el} showMenu={showMenu} />;
+                  return <DocumentMsg el={el} key={key} showMenu={showMenu} />;
                 case "link":
-                  return <LinkMsg el={el} showMenu={showMenu} />;
+                  return <LinkMsg el={el} key={key} showMenu={showMenu} />;
                 case "reply":
-                  return <ReplyMsg el={el} showMenu={showMenu} />;
+                  return <ReplyMsg el={el} key={key} showMenu={showMenu} />;
                 default:
-                  return <TextMsg el={el} showMenu={showMenu} />;
+                  return <TextMsg el={el} key={key} showMenu={showMenu} />;
               }
             default:
           }

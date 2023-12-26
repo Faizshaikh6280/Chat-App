@@ -8,7 +8,12 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { ArchiveBox, CircleDashed, MagnifyingGlass } from "phosphor-react";
+import {
+  ArchiveBox,
+  CircleDashed,
+  MagnifyingGlass,
+  Plus,
+} from "phosphor-react";
 import { SimpleBarStyle } from "../../components/Scrollbar";
 import { alpha, styled, useTheme } from "@mui/material/styles";
 import { ChatList } from "../../data";
@@ -43,7 +48,7 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
   justifyContent: "center",
 }));
 
-const Chats = () => {
+const Chats = ({ type }) => {
   const theme = useTheme();
 
   return (
@@ -61,17 +66,26 @@ const Chats = () => {
         }}
       >
         <Stack p={3} spacing={2} sx={{ maxHeight: "100vh" }}>
+          {/* Header */}
           <Stack
             alignItems={"center"}
             justifyContent="space-between"
             direction="row"
           >
-            <Typography variant="h5">Chats</Typography>
-            <IconButton sx={{ width: "max-content" }}>
-              <CircleDashed />
-            </IconButton>
+            <Typography variant="h5">
+              {type === "personal"
+                ? "Chats"
+                : type === "group"
+                ? "Group"
+                : null}
+            </Typography>
+            {type === "personal" && (
+              <IconButton sx={{ width: "max-content" }}>
+                <CircleDashed />
+              </IconButton>
+            )}
           </Stack>
-
+          {/* Search bar */}
           <Stack sx={{ width: "100%" }}>
             <Search>
               <SearchIconWrapper>
@@ -80,14 +94,34 @@ const Chats = () => {
               <StyledInputBase placeholder="Search…" />
             </Search>
           </Stack>
-
-          <Stack spacing={1}>
-            <Stack direction={"row"} spacing={1.5} alignItems="center">
-              <ArchiveBox size={24} />
-              <Button variant="text">Archive</Button>
+          {type === "personal" && (
+            <Stack spacing={1}>
+              <Stack direction={"row"} spacing={1.5} alignItems="center">
+                <ArchiveBox size={24} />
+                <Button variant="text">Archive</Button>
+              </Stack>
+              <Divider />
             </Stack>
-            <Divider />
-          </Stack>
+          )}
+
+          {type === "group" && (
+            <Stack
+              direction="row"
+              justifyContent="space-between"
+              width="100%"
+              alignItems={"center"}
+            >
+              <Typography
+                variant="subtitle2"
+                color={theme.palette.primary.main}
+              >
+                Create new Group
+              </Typography>
+              <IconButton>
+                <Plus color={theme.palette.primary.main} />
+              </IconButton>
+            </Stack>
+          )}
 
           <Stack sx={{ flexGrow: 1, overflow: "scroll", height: "100%" }}>
             <SimpleBarStyle timeout={500} clickOnTrack={false}>
@@ -101,7 +135,7 @@ const Chats = () => {
               </Stack>
               <Stack spacing={2.4}>
                 <Typography variant="subtitle2" sx={{ color: "#676667" }}>
-                  All Chats
+                  All {type === "personal" ? "Chats" : "Groups"}
                 </Typography>
                 {ChatList.filter((el) => !el.pinned).map((el, idx) => {
                   return <ChatElement {...el} key={idx} />;
