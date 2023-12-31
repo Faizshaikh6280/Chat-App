@@ -12,6 +12,8 @@ import {
 import { Eye, EyeSlash } from "phosphor-react";
 import { useForm } from "react-hook-form";
 import SocialAuth from "./SocialAuth";
+import { useDispatch } from "react-redux";
+import { LoginUser } from "../../redux/slices/auth";
 
 const emailPattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,}$/i;
 
@@ -28,12 +30,13 @@ function Error({ err }) {
 
 function Login() {
   const theme = useTheme();
+  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const { register, handleSubmit, reset, getValue, formState } = useForm();
   const { errors } = formState;
 
   function onSumbit(data) {
-    console.log(data);
+    dispatch(LoginUser(data));
   }
 
   function onError(errors) {

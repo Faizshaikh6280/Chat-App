@@ -12,6 +12,8 @@ import {
 import { Eye, EyeSlash } from "phosphor-react";
 import { useForm } from "react-hook-form";
 import SocialAuth from "./SocialAuth";
+import { useDispatch } from "react-redux";
+import { RegisterUser } from "../../redux/slices/auth";
 
 const emailPattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,}$/i;
 
@@ -28,12 +30,14 @@ function Error({ err }) {
 
 function Signup() {
   const theme = useTheme();
+  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const { register, handleSubmit, reset, getValue, formState } = useForm();
   const { errors } = formState;
 
   function onSumbit(data) {
     console.log(data);
+    dispatch(RegisterUser(data));
   }
 
   function onError(errors) {
@@ -65,7 +69,7 @@ function Signup() {
             >
               <Stack width={"100%"}>
                 <TextField
-                  {...register("firstname", {
+                  {...register("firstName", {
                     required: "First name is required",
                   })}
                   label="First Name"
@@ -78,7 +82,7 @@ function Signup() {
               <Stack width={"100%"}>
                 <TextField
                   fullWidth
-                  {...register("lastname")}
+                  {...register("lastName")}
                   label="Last Name"
                   type="text"
                 />

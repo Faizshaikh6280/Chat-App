@@ -285,6 +285,84 @@ const SHARED_DOCS = [
   },
 ];
 
+const CallLogsHistory = [
+  {
+    id: 0,
+    name: faker.name.fullName(),
+    incoming: true,
+    missed: true,
+    image: faker.image.avatar(),
+    online: true,
+  },
+  {
+    id: 1,
+    name: faker.name.fullName(),
+    incoming: true,
+    missed: false,
+    image: faker.image.avatar(),
+    online: false,
+  },
+  {
+    id: 2,
+    name: faker.name.fullName(),
+    incoming: false,
+    missed: true,
+    image: faker.image.avatar(),
+    online: true,
+  },
+  {
+    id: 3,
+    name: faker.name.fullName(),
+    incoming: false,
+    missed: false,
+    image: faker.image.avatar(),
+    online: false,
+  },
+  {
+    id: 4,
+    name: faker.name.fullName(),
+    incoming: true,
+    missed: true,
+    image: faker.image.avatar(),
+    online: false,
+  },
+  {
+    id: 5,
+    name: faker.name.fullName(),
+    incoming: false,
+    missed: true,
+    image: faker.image.avatar(),
+    online: false,
+  },
+];
+
+const CallElements = [
+  {
+    id: 0,
+    name: faker.name.fullName(),
+    image: faker.image.avatar(),
+    online: false,
+  },
+  {
+    id: 1,
+    name: faker.name.fullName(),
+    image: faker.image.avatar(),
+    online: true,
+  },
+  {
+    id: 2,
+    name: faker.name.fullName(),
+    image: faker.image.avatar(),
+    online: true,
+  },
+  {
+    id: 3,
+    name: faker.name.fullName(),
+    image: faker.image.avatar(),
+    online: false,
+  },
+];
+
 export {
   Profile_Menu,
   Nav_Setting,
@@ -294,4 +372,6 @@ export {
   Message_options,
   SHARED_DOCS,
   SHARED_LINKS,
+  CallLogsHistory,
+  CallElements,
 };

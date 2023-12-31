@@ -10,13 +10,43 @@ import {
   MenuItem,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import LogoImg from "../../assets/Images/logo.ico";
 import { Nav_Buttons, Profile_Menu } from "../../data/index";
 import { faker } from "@faker-js/faker";
 import { Gear } from "phosphor-react";
 import useSettings from "../../hooks/useSettings";
 import AntSwitch from "../../components/AntSwitch";
+import { useNavigate } from "react-router-dom";
+
+function getPath(index) {
+  switch (index) {
+    case 0:
+      return "/app";
+    case 1:
+      return "/group";
+    case 2:
+      return "/call";
+    case 3:
+      return "/settings";
+    default:
+      break;
+  }
+}
+
+function getMenuPath(index) {
+  switch (index) {
+    case 0:
+      return "/profile";
+    case 1:
+      return "/settings";
+    case 2:
+      //TODO => setting isAuth = false in redux store.
+      return "/auth/login";
+    default:
+      break;
+  }
+}
 
 function SideBar() {
   const [selected, setSelected] = useState(0);
@@ -25,6 +55,23 @@ function SideBar() {
   const isLight = theme.palette.mode === "light";
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+  const navigate = useNavigate();
+
+  useEffect(function () {
+    const { pathname } = window.location;
+    switch (pathname) {
+      case "/app":
+        return setSelected(0);
+      case "/group":
+        return setSelected(1);
+      case "/call":
+        return setSelected(2);
+      case "/settings":
+        return setSelected(3);
+      default:
+        break;
+    }
+  }, []);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -66,13 +113,22 @@ function SideBar() {
                   borderRadius: 1.5,
                 }}
               >
-                <IconButton sx={{ width: "max-content", color: "#fff" }}>
+                <IconButton
+                  sx={{ width: "max-content", color: "#fff" }}
+                  onClick={() => {
+                    setSelected(el.index);
+                    navigate(getPath(el.index));
+                  }}
+                >
                   {el.icon}
                 </IconButton>
               </Box>
             ) : (
               <IconButton
-                onClick={() => setSelected(el.index)}
+                onClick={() => {
+                  setSelected(el.index);
+                  navigate(getPath(el.index));
+                }}
                 key={el.index}
                 sx={{
                   width: "max-content",
@@ -88,6 +144,10 @@ function SideBar() {
         <Stack justifyContent="center" alignItems="center">
           {selected === 3 ? (
             <Box
+              onClick={() => {
+                setSelected(3);
+                navigate(getPath(3));
+              }}
               sx={{
                 bgcolor: theme.palette.primary.main,
                 borderRadius: 1.5,
@@ -107,6 +167,7 @@ function SideBar() {
             <IconButton
               onClick={() => {
                 setSelected(3);
+                navigate(getPath(3));
               }}
               key={3}
               sx={{
@@ -155,6 +216,12 @@ function SideBar() {
                 justifyContent="space-between"
                 alignItems="center"
                 width={90}
+                onClick={() => {
+                  if (key === 1) {
+                    setSelected(3);
+                  }
+                  navigate(getMenuPath(key));
+                }}
               >
                 <Typography variant="subtitle2">{el.title}</Typography>
                 <span>{el.icon}</span>
