@@ -8,6 +8,7 @@ import DashboardLayout from "../layouts/dashboard";
 import { DEFAULT_PATH } from "../config";
 import LoadingScreen from "../components/LoadingScreen";
 import Auth from "../layouts/Auth";
+import VerifyOtp from "../components/Auth/VerifyOtp";
 
 const Loadable = (Component) => (props) => {
   return (
@@ -27,6 +28,7 @@ export default function Router() {
         { path: "signup", element: <Signup /> },
         { path: "reset-password", element: <ForgetPassword /> },
         { path: "new-password", element: <NewPassword /> },
+        { path: "verify-otp", element: <VerifyOtp /> },
       ],
     },
     {

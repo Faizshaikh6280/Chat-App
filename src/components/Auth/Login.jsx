@@ -74,7 +74,7 @@ function Login() {
                 placeholder="example@gmail.com"
                 type="email"
               />
-              {errors?.email?.message && <Error err={errors.email.message} />}
+              {errors?.emai?.message && <Error err={errors.emai.message} />}
             </Stack>
             <Stack>
               <TextField
@@ -110,7 +110,7 @@ function Login() {
                 <Error err={errors.password.message} />
               )}
             </Stack>
-            <Link
+            {/* <Link
               variant="body2"
               alignSelf={"flex-end"}
               component={RouterLink}
@@ -121,7 +121,7 @@ function Login() {
               to={"/auth/reset-password"}
             >
               Forget password?
-            </Link>
+            </Link> */}
             <button
               style={{
                 background: theme.palette.mode === "light" ? "#000" : "#fff",

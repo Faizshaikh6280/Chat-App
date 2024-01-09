@@ -24,6 +24,12 @@ const slice = createSlice({
 
 export default slice.reducer;
 
+export function LogoutUser() {
+  return async (dispatch, getState) => {
+    dispatch(slice.actions.signOut());
+  };
+}
+
 export function LoginUser(formValues) {
   // formvalues => {email,password}
 
@@ -54,6 +60,7 @@ export function LoginUser(formValues) {
       });
   };
 }
+
 export function RegisterUser(formValues) {
   // formvalues => {firstName,lastName,email,password}
 
@@ -70,7 +77,14 @@ export function RegisterUser(formValues) {
           },
         }
       )
-      .then(function (response) {})
+      .then(function (response) {
+        dispatch(
+          slice.actions.logIn({
+            isLoggedIn: true,
+            token: response.data.token,
+          })
+        );
+      })
       .catch((err) => {
         console.log(err);
       });

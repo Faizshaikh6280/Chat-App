@@ -18,6 +18,8 @@ import { Gear } from "phosphor-react";
 import useSettings from "../../hooks/useSettings";
 import AntSwitch from "../../components/AntSwitch";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { LogoutUser } from "../../redux/slices/auth";
 
 function getPath(index) {
   switch (index) {
@@ -56,7 +58,7 @@ function SideBar() {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   useEffect(function () {
     const { pathname } = window.location;
     switch (pathname) {
@@ -219,6 +221,8 @@ function SideBar() {
                 onClick={() => {
                   if (key === 1) {
                     setSelected(3);
+                  } else if (key === 2) {
+                    dispatch(LogoutUser());
                   }
                   navigate(getMenuPath(key));
                 }}
