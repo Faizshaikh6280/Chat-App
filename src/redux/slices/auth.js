@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "../axios";
-
+import { openSnackbar } from "../slices/app";
 const initialState = {
   isLoggedIn: false,
   token: "",
@@ -27,6 +27,7 @@ export default slice.reducer;
 export function LogoutUser() {
   return async (dispatch, getState) => {
     dispatch(slice.actions.signOut());
+    window.localStorage.removeItem("user_id");
   };
 }
 
@@ -53,10 +54,20 @@ export function LoginUser(formValues) {
             token: response.data.token,
           })
         );
+        window.localStorage.setItem("user_id", response.data.user_id);
+        dispatch(
+          openSnackbar({ severity: "success", message: response.data.message })
+        );
         console.log(response);
       })
       .catch((err) => {
         console.log(err);
+        dispatch(
+          openSnackbar({
+            severity: "error",
+            message: err.response.data.message,
+          })
+        );
       });
   };
 }
@@ -84,9 +95,20 @@ export function RegisterUser(formValues) {
             token: response.data.token,
           })
         );
+        window.localStorage.setItem("user_id", response.data.user_id);
+
+        dispatch(
+          openSnackbar({ severity: "success", message: response.data.message })
+        );
       })
       .catch((err) => {
         console.log(err);
+        dispatch(
+          openSnackbar({
+            severity: "error",
+            message: err.response.data.message,
+          })
+        );
       });
   };
 }

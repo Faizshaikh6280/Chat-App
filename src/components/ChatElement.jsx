@@ -1,12 +1,14 @@
 import React from "react";
 import { Box, Badge, Stack, Avatar, Typography, useTheme } from "@mui/material";
 import { StyledBadge } from "./StyledBadge";
-
+import { useDispatch } from "react-redux";
+import { selectConversation } from "../redux/slices/app";
 const ChatElement = ({ img, name, msg, time, unread, online, id }) => {
   const theme = useTheme();
-
+  const dispatch = useDispatch();
   return (
     <Box
+      onClick={() => dispatch(selectConversation({ room_id: id }))}
       sx={{
         width: "100%",
         borderRadius: 1,

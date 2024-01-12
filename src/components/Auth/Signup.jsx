@@ -75,8 +75,8 @@ function Signup() {
                   label="First Name"
                   type="text"
                 />
-                {errors?.firstname?.message && (
-                  <Error err={errors.firstname.message} />
+                {errors?.firstName?.message && (
+                  <Error err={errors.firstName.message} />
                 )}
               </Stack>
               <Stack width={"100%"}>
@@ -86,8 +86,8 @@ function Signup() {
                   label="Last Name"
                   type="text"
                 />
-                {errors?.lastname?.message && (
-                  <Error err={errors.lastname.message} />
+                {errors?.lastName?.message && (
+                  <Error err={errors.lastName.message} />
                 )}
               </Stack>
             </Stack>

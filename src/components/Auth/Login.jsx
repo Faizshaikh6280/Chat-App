@@ -36,6 +36,7 @@ function Login() {
   const { errors } = formState;
 
   function onSumbit(data) {
+    console.log(data);
     dispatch(LoginUser(data));
   }
 
